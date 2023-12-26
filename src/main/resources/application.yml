@@ -18,7 +18,13 @@ spring:
       ddl-auto: update  # Set the strategy for Hibernate to create/update the database schema. Hibernate ddl auto (create, create-drop, validate, update)
     show-sql: true
 
-# Set the port number for the web server
+  # Set the configuration for handling multipart file uploads
+  servlet:
+    multipart:
+      max-file-size: 10MB # Maximum size of each file in a multipart request
+      max-request-size: 10MB # Maximum size of the entire multipart request
+
+# Set the port number for the web server.
 server:
   port: 8112
 
@@ -31,3 +37,6 @@ database:
 JWT_SECRET_KEY:
   AB(G+KbPeShVkYp3s6v9y$B&E)H@McQf
 
+# vsla base url
+VSLA_APP:
+  BASE_URL: http://localhost:8111/api/v1/

@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import vsla_admin.exceptions.customExceptions.ResourceNotFoundException;
 import vsla_admin.userManager.user.UserRepository;
 import vsla_admin.userManager.user.Users;
 
@@ -45,5 +46,11 @@ public class CustomUserDetailsService implements UserDetailsService {
             adminUser.setLastLoggedIn(LocalDateTime.now());
             userRepository.save(adminUser);
         }
+    }
+
+    public Users getByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(
+                () -> new ResourceNotFoundException("User not found")
+        );
     }
 }

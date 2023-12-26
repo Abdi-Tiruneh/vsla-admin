@@ -47,9 +47,11 @@ public class ApplicationRunner {
         };
     }
 
+
+    //TODO: Update role descriptions
     private List<Role> createUserRole() {
-        Role superAdmin = new Role("SUPER_ADMIN", "Manages admins");
-        Role admin = new Role("ADMIN", "Manages all aspects of the application.");
+        Role superAdmin = new Role("SUPER_ADMIN", "Manages organization and organization admins");
+        Role admin = new Role("ORGANIZATION_ADMIN", "Manages all aspects of the application.");
 
         return List.of(superAdmin, admin);
     }
