@@ -19,8 +19,11 @@ public class UserResponse {
     private String fullName;
 
     private String email;
+
     private String phoneNumber;
+
     private String role;
+    private Long companyId;
 
     private Status status;
 
@@ -31,5 +34,4 @@ public class UserResponse {
     private String registeredBy;
 
     private LocalDateTime updatedAt;
-
 }

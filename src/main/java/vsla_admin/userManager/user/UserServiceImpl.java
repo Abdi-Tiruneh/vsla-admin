@@ -2,11 +2,12 @@ package vsla_admin.userManager.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vsla_admin.exceptions.customExceptions.ResourceAlreadyExistsException;
+import vsla_admin.organization.organization.Organization;
+import vsla_admin.organization.organization.OrganizationService;
 import vsla_admin.userManager.dto.UserMapper;
 import vsla_admin.userManager.dto.UserRegistrationReq;
 import vsla_admin.userManager.dto.UserResponse;
@@ -14,6 +15,7 @@ import vsla_admin.userManager.dto.UserUpdateReq;
 import vsla_admin.userManager.role.Role;
 import vsla_admin.userManager.role.RoleService;
 import vsla_admin.utils.CurrentlyLoggedInUser;
+import vsla_admin.utils.Status;
 
 import java.util.List;
 
@@ -26,10 +28,11 @@ public class UserServiceImpl implements UserService {
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
     private final CurrentlyLoggedInUser currentlyLoggedInUser;
+    private final OrganizationService organizationService;
 
     @Override
     @Transactional
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ORGANIZATION_ADMIN')")
     public UserResponse register(UserRegistrationReq userReq) {
         if (userUtils.isEmailTaken(userReq.getEmail()))
             throw new ResourceAlreadyExistsException("Email is already taken");
@@ -40,12 +43,25 @@ public class UserServiceImpl implements UserService {
         if (userUtils.isPhoneNumberTaken(userReq.getPhoneNumber()))
             throw new ResourceAlreadyExistsException("Phone number is already taken");
 
-        Role role = roleService.getRoleById(userReq.getRoleId());
-
-        Users loggedInUser = currentlyLoggedInUser.getUser();
-        Users user = userUtils.createUser(userReq, loggedInUser, role);
+        Users user = createUser(userReq);
         Users savedUser = userRepository.save(user);
         return UserMapper.toUserResponse(savedUser);
+    }
+
+    public Users createUser(UserRegistrationReq userReq) {
+        Role role = roleService.getRoleById(userReq.getRoleId());
+        Organization organization = organizationService.getById(userReq.getCompanyId());
+
+        return Users.builder()
+                .username(userReq.getUsername())
+                .password(passwordEncoder.encode(userReq.getPassword()))
+                .fullName(userReq.getFullName())
+                .email(userReq.getEmail())
+                .phoneNumber(userReq.getPhoneNumber())
+                .organization(organization)
+                .role(role)
+                .userStatus(Status.ACTIVE)
+                .build();
     }
 
     @Override
@@ -101,7 +117,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long userId) {
-
+        userUtils.getById(userId);
+        userRepository.deleteById(userId);
     }
-
 }

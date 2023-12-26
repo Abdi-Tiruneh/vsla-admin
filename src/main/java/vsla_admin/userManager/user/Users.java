@@ -14,7 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import vsla_admin.address.Address;
-import vsla_admin.company.Company;
+import vsla_admin.organization.organization.Organization;
 import vsla_admin.userManager.role.Role;
 import vsla_admin.utils.Status;
 
@@ -69,7 +69,7 @@ public class Users implements UserDetails {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
-    private Company company;
+    private Organization organization;
 
     @CreationTimestamp
     @Column(name = "created_at")

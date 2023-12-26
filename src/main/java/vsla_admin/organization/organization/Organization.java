@@ -1,4 +1,4 @@
-package vsla_admin.company;
+package vsla_admin.organization;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -14,24 +14,24 @@ import vsla_admin.utils.Status;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "companies")
-@SQLDelete(sql = "UPDATE companies SET deleted = true WHERE company_id=?")
+@Table(name = "organizations")
+@SQLDelete(sql = "UPDATE organizations SET deleted = true WHERE organization_id=?")
 @Where(clause = "deleted=false")
 @Data
-public class Company {
+public class Organization {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "company_id")
-    private Long companyId;
+    @Column(name = "organization_id")
+    private Long organizationId;
 
-    @Column(name = "company_name", nullable = false)
-    private String companyName;
+    @Column(name = "organization_name", nullable = false)
+    private String organizationName;
 
     private boolean enabled;
 
     @Enumerated(EnumType.STRING)
-    private Status companyStatus;
+    private Status organizationStatus;
 
     @OneToOne
     @JoinColumn(name = "address_id")

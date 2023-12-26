@@ -1,4 +1,4 @@
-package vsla_admin.company.dto;
+package vsla_admin.organization.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -6,10 +6,10 @@ import lombok.Data;
 import vsla_admin.address.dto.AddressReq;
 
 @Data
-public class CompanyRegistrationReq {
+public class OrganizationRegistration {
 
-    @NotBlank(message = "Company Name is required")
-    private String companyName;
+    @NotBlank(message = "Organization Name is required")
+    private String organizationName;
 
     @NotNull(message = "Address is required")
     private AddressReq address;

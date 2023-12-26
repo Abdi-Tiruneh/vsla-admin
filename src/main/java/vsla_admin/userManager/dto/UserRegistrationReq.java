@@ -30,4 +30,7 @@ public class UserRegistrationReq {
 
     @NotNull(message = "Role is required")
     private Short roleId; // string representation of the role
+
+    @NotNull(message = "Project is required")
+    private Long companyId; // string representation of the role
 }
