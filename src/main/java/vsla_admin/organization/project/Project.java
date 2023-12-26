@@ -1,4 +1,4 @@
-package vsla_admin.organization.organization;
+package vsla_admin.organization.project;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -7,39 +7,33 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
-import vsla_admin.address.Address;
-import vsla_admin.userManager.user.Users;
+import vsla_admin.organization.organization.Organization;
 import vsla_admin.utils.Status;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "organizations")
-@SQLDelete(sql = "UPDATE organizations SET deleted = true WHERE organization_id=?")
+@Table(name = "projects")
+@SQLDelete(sql = "UPDATE projects SET deleted = true WHERE project_id=?")
 @Where(clause = "deleted=false")
 @Data
-public class Organization {
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "organization_id")
-    private Long organizationId;
+    @Column(name = "project_id")
+    private Long projectId;
 
-    @Column(name = "organization_name", nullable = false)
-    private String organizationName;
-
-    private boolean enabled;
+    @Column(name = "project_name", nullable = false)
+    private String projectName;
 
     @Enumerated(EnumType.STRING)
-    private Status organizationStatus;
-
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
+    private Status status;
 
     @ManyToOne
-    @JoinColumn(name = "registered_by")
-    private Users registeredBy;
+    @JsonIgnore
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -51,5 +45,4 @@ public class Organization {
 
     @JsonIgnore
     private boolean deleted = Boolean.FALSE;
-
 }

@@ -1,4 +1,4 @@
-package vsla_admin.organization.dto;
+package vsla_admin.organization.organization.dto;
 
 import lombok.Data;
 import vsla_admin.address.Address;

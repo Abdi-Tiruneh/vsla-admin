@@ -1,4 +1,4 @@
-package vsla_admin.organization;
+package vsla_admin.organization.organization;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import vsla_admin.address.Address;
 import vsla_admin.address.AddressService;
 import vsla_admin.exceptions.customExceptions.ResourceNotFoundException;
-import vsla_admin.organization.dto.OrganizationRegistration;
-import vsla_admin.organization.dto.OrganizationResponse;
-import vsla_admin.organization.dto.OrganizationUpdate;
+import vsla_admin.organization.organization.dto.OrganizationRegistration;
+import vsla_admin.organization.organization.dto.OrganizationResponse;
+import vsla_admin.organization.organization.dto.OrganizationUpdate;
 import vsla_admin.userManager.user.UserRepository;
 import vsla_admin.userManager.user.Users;
 import vsla_admin.utils.CurrentlyLoggedInUser;
@@ -36,7 +36,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         // Create an address for the group
         Address address = addressService.createAddress(registrationReq.getAddress());
 
-        // Create a new Organization
+        // Create a new Project
         Organization organization = new Organization();
         organization.setOrganizationName(registrationReq.getOrganizationName());
         organization.setOrganizationStatus(Status.PENDING);
@@ -86,7 +86,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public Organization getById(Long organizationId) {
         return organizationRepository.findById(organizationId)
-                .orElseThrow(() -> new ResourceNotFoundException("Organization not found with ID: " + organizationId));
+                .orElseThrow(() -> new ResourceNotFoundException("Project not found with ID: " + organizationId));
     }
 
 }

@@ -1,9 +1,9 @@
-package vsla_admin.organization;
+package vsla_admin.organization.organization;
 
 
-import vsla_admin.organization.dto.OrganizationRegistration;
-import vsla_admin.organization.dto.OrganizationResponse;
-import vsla_admin.organization.dto.OrganizationUpdate;
+import vsla_admin.organization.organization.dto.OrganizationRegistration;
+import vsla_admin.organization.organization.dto.OrganizationResponse;
+import vsla_admin.organization.organization.dto.OrganizationUpdate;
 
 import java.util.List;
 

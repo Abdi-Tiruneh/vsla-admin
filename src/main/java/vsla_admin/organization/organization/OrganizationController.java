@@ -1,13 +1,13 @@
-package vsla_admin.organization;
+package vsla_admin.organization.organization;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vsla_admin.organization.dto.OrganizationRegistration;
-import vsla_admin.organization.dto.OrganizationResponse;
-import vsla_admin.organization.dto.OrganizationUpdate;
+import vsla_admin.organization.organization.dto.OrganizationRegistration;
+import vsla_admin.organization.organization.dto.OrganizationResponse;
+import vsla_admin.organization.organization.dto.OrganizationUpdate;
 import vsla_admin.utils.ApiResponse;
 
 import java.util.List;
@@ -44,9 +44,9 @@ public class OrganizationController {
         return ResponseEntity.ok(organizationService.getOrganizationById(organizationId));
     }
 
-    @DeleteMapping({"/{userId}"})
-    public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long userId) {
-        organizationService.deleteOrganization(userId);
+    @DeleteMapping("/{organizationId}")
+    public ResponseEntity<ApiResponse> deleteOrganization(@PathVariable Long organizationId) {
+        organizationService.deleteOrganization(organizationId);
         return ApiResponse.success("Organization deleted successfully");
     }
 }

@@ -1,4 +1,4 @@
-package vsla_admin.organization;
+package vsla_admin.organization.organization;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
