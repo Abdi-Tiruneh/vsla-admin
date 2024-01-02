@@ -15,9 +15,9 @@ import lombok.Setter;
 public class TermsandConditions {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long TermsandConditionsId;
-    private String Title;
-    private String Description;
+    private Long termsandConditionsId;
+    private String title;
+    private String description;
 
 
 

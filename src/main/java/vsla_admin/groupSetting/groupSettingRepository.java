@@ -2,9 +2,9 @@ package vsla_admin.groupSetting;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+public interface GroupSettingRepository extends JpaRepository<GroupSetting,Long>{
 
-public interface groupSettingRepository extends JpaRepository<groupSetting,Long>{
-
-    groupSetting findGroupSettingByGroupSettingId(Long groupSettingId);
+    GroupSetting findGroupSettingByGroupSettingId(Long groupSettingId);
     
 }
+

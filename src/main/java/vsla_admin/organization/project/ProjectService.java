@@ -11,6 +11,7 @@ public interface ProjectService {
     Project updateProject(Long groupTypeId, ProjectReq projectReq);
 
     List<Project> getAllProjectsByOrganization(Long organizationId);
+    List<Project> getAllProjectsByprojectId(Long projectId);
 
     void deleteProject(Long groupTypeId);
 }

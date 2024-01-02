@@ -30,10 +30,10 @@ public class TermsandConditionsServiceImpl implements TermsandConditionsService 
       return TermsandConditionsRepositories.findAll();
     }
 
-    // @Override
-    // public TermsandConditions getTermsandConditionsByTermsandConditionsId(Long TermsandConditionsId) {
-    //   return TermsandConditionsRepositories.findTermsandConditionsByTermsandConditionsId(TermsandConditionsId);
-    // }
+    @Override
+    public TermsandConditions getTermsandConditionsByTermsandConditionsId(Long termsandConditionsId) {
+      return TermsandConditionsRepositories.findTermsandConditionsByTermsandConditionsId(termsandConditionsId);
+    }
 
   
 

@@ -28,4 +28,9 @@ public class TipServiceImpl implements TipsService {
       return tipsRepository.save(tips);
     }
 
+    @Override
+    public Tips addTips(Tips tips) {
+     return tipsRepository.save(tips);
+    }
+
   }

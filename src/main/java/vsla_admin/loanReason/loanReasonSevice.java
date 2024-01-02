@@ -2,10 +2,11 @@ package vsla_admin.loanReason;
 
 import java.util.List;
 
-public interface loanReasonSevice {
+public interface LoanReasonSevice {
     
-    loanReason editLoanReason( loanReason loanReasons);
-    List<loanReason> getloanReasons();
-    loanReason getLoanReasonByLoanReasonId(Long loanReasonId);
+    LoanReason editLoanReason( LoanReason loanReasons);
+    List<LoanReason> getloanReasons();
+    LoanReason getLoanReasonByLoanReasonId(Long loanReasonId);
+    LoanReason addLoanReason( LoanReason loanReason);
      
 }

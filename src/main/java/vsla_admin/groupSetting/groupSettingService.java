@@ -2,11 +2,13 @@ package vsla_admin.groupSetting;
 
 import java.util.List;
 
+public interface GroupSettingService {
 
-public interface groupSettingService {
+    GroupSetting addGroupSetting (GroupSetting groupSettings);
 
-    groupSetting addGroupSetting (groupSetting groupSettings);
-    groupSetting editgrGroupSetting (groupSetting groupSettings);
-    List<groupSetting> getGroupSetting();
-    groupSetting getGroupSettingByGroupSettingId(Long groupSettingId);
+    GroupSetting editgrGroupSetting (GroupSetting groupSettings);
+
+    List<GroupSetting> getGroupSetting();
+    
+    GroupSetting getGroupSettingByGroupSettingId(Long groupSettingId);
 }

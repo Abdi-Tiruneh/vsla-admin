@@ -3,14 +3,18 @@ package vsla_admin.Tips;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
+import vsla_admin.Response.createResponse;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,6 +36,15 @@ public class TipsController {
     @GetMapping("/{TipsId}")
     Tips geTips(@PathVariable Long TipsId) {
         return tipsService.getTipsByTipsId(TipsId);
+    }
+
+
+      @PostMapping("/add")
+    public ResponseEntity<createResponse> addTips (@RequestBody Tips tips){
+        tipsService.addTips(tips);
+        createResponse response = new createResponse("success", "Tips created sucessfully");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
     }
 
     @PutMapping("/edit/{TipsId}")

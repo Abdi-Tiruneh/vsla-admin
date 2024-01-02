@@ -12,11 +12,13 @@ import lombok.Setter;
 @Setter
 @Entity
 
-public class loanReason {
+public class LoanReason {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long loanReasonId;
+    private String title;
     private String loanDescription;
+
 }

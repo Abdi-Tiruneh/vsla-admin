@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
 import vsla_admin.Response.createResponse;
 
@@ -35,18 +37,18 @@ public class TermsandConditionsController {
         return this.termsandConditionsService.getTermsandConditions();
     }
 
-    // @GetMapping("/{TermsandConditionsId}")
-    // TermsandConditions getTermsandConditions(@PathVariable Long TermsandConditionsId) {
-    //     return termsandConditionsService.getTermsandConditionsByTermsandConditionsId(TermsandConditionsId);
-    // }
+    @GetMapping("/{termsandConditionsId}")
+    TermsandConditions getTermsandConditions(@PathVariable Long termsandConditionsId) {
+        return termsandConditionsService.getTermsandConditionsByTermsandConditionsId(termsandConditionsId);
+    }
 
-//    @PutMapping("/edit/{TermsandConditionsId}")
-//    TermsandConditions editTermsandConditions(@RequestBody TermsandConditions tempTermsandConditions, @PathVariable Long TermsandConditionsId){
-//    TermsandConditions termsandConditions= this.termsandConditionsService.getTermsandConditionsByTermsandConditionsId(TermsandConditionsId);
-//    termsandConditions.setTitle(tempTermsandConditions.getTitle());
-//    termsandConditions.setDescription(tempTermsandConditions.getDescription());
-//    return termsandConditionsService.editTermsandConditions(termsandConditions);
-//    }
+   @PutMapping("/edit/{termsandConditionsId}")
+   TermsandConditions editTermsandConditions(@RequestBody TermsandConditions tempTermsandConditions, @PathVariable Long termsandConditionsId){
+   TermsandConditions termsandConditions= this.termsandConditionsService.getTermsandConditionsByTermsandConditionsId(termsandConditionsId);
+   termsandConditions.setTitle(tempTermsandConditions.getTitle());
+   termsandConditions.setDescription(tempTermsandConditions.getDescription());
+   return termsandConditionsService.editTermsandConditions(termsandConditions);
+   }
 
 
     

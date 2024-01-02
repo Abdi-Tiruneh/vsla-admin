@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
 import vsla_admin.Response.createResponse;
 
@@ -22,37 +22,36 @@ import vsla_admin.Response.createResponse;
 @RestController
 @RequestMapping("/api/v1/groupSetting")
 
-public class groupSettingController {
+public class GroupSettingController {
 
     @Autowired 
-    private final groupSettingService groupSettingServices;
+    private final GroupSettingService groupSettingServices;
      
     @PostMapping("/add")
-    public ResponseEntity<createResponse> addGroupSetting (@RequestBody groupSetting groupSettings) {
+    public ResponseEntity<createResponse> addGroupSetting (@RequestBody GroupSetting groupSettings) {
         groupSettingServices.addGroupSetting(groupSettings);
         createResponse response = new createResponse("success", "groupSetting created sucessfully");
         return new ResponseEntity<>(response, HttpStatus.OK);
-
     }
 
     @GetMapping("/getGroupSetting")
-    List<groupSetting> getGroupSetting() {
+    List<GroupSetting> getGroupSetting() {
         return this.groupSettingServices.getGroupSetting();
     }
 
     @GetMapping("/{groupSettingId}")
-    groupSetting getGroupSetting(@PathVariable Long groupSettingId) {
+    GroupSetting getGroupSetting(@PathVariable Long groupSettingId) {
         return groupSettingServices.getGroupSettingByGroupSettingId(groupSettingId);
     }
    
 
    @PutMapping("/edit/{groupSettingId}")
-    groupSetting editGroupSetting(@RequestBody groupSetting tempGroupSetting, @PathVariable Long groupSettingId) {
-        groupSetting groupsettings = this.groupSettingServices.getGroupSettingByGroupSettingId(groupSettingId);
+    GroupSetting editGroupSetting(@RequestBody GroupSetting tempGroupSetting, @PathVariable Long groupSettingId) {
+        GroupSetting groupsettings = this.groupSettingServices.getGroupSettingByGroupSettingId(groupSettingId);
+         groupsettings.setMinGroupMember(tempGroupSetting.getMinGroupMember());
         groupsettings.setMaxGroupMember(tempGroupSetting.getMaxGroupMember());
-        groupsettings.setMaxPayableAmount(tempGroupSetting.getMaxPayableAmount());
-        groupsettings.setMinGroupMember(tempGroupSetting.getMinGroupMember());
         groupsettings.setMinPayableAmount(tempGroupSetting.getMinPayableAmount());
+        groupsettings.setMaxPayableAmount(tempGroupSetting.getMaxPayableAmount());
         groupsettings.setStatus(tempGroupSetting.getStatus());
         return groupSettingServices.editgrGroupSetting(groupsettings);
     }

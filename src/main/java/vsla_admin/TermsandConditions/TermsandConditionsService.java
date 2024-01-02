@@ -6,7 +6,7 @@ public interface TermsandConditionsService {
     TermsandConditions addTermsandConditions(TermsandConditions termsandConditions);
     TermsandConditions editTermsandConditions(TermsandConditions termsandConditions);
     List<TermsandConditions> getTermsandConditions();
-    // TermsandConditions getTermsandConditionsByTermsandConditionsId(Long TermsandConditionsId);
+    TermsandConditions getTermsandConditionsByTermsandConditionsId(Long termsandConditionsId);
 
 
 }

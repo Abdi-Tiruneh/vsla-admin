@@ -10,25 +10,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 
-public class loanResonServiceImpl implements loanReasonSevice{
+public class LoanResonServiceImpl implements LoanReasonSevice{
 
     @Autowired
-    private final loanReasonRepository loanReasonRepositories;
+    private final LoanReasonRepository loanReasonRepositories;
 
     @Override
-    public loanReason editLoanReason(loanReason loanReasons) {
-        return loanReasonRepositories.save(loanReasons);
+    public LoanReason editLoanReason(LoanReason loanReason) {
+        return loanReasonRepositories.save(loanReason);
        
     }
 
     @Override
-    public List<loanReason> getloanReasons() {
+    public List<LoanReason> getloanReasons() {
       return loanReasonRepositories.findAll();
     }
 
     @Override
-    public loanReason getLoanReasonByLoanReasonId(Long loanReasonId) {
+    public LoanReason getLoanReasonByLoanReasonId(Long loanReasonId) {
       return loanReasonRepositories.findLoanReasonByLoanReasonId(loanReasonId);
+    }
+
+  
+
+    @Override
+    public LoanReason addLoanReason(LoanReason loanReason) {
+    return loanReasonRepositories.save(loanReason);
     }
     
 }

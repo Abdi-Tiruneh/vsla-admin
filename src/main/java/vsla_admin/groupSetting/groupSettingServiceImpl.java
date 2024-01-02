@@ -9,28 +9,29 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class groupSettingServiceImpl implements groupSettingService{
+
+public class GroupSettingServiceImpl implements GroupSettingService{
     @Autowired
-    private final groupSettingRepository groupSettingRepositories;
+    private final GroupSettingRepository groupSettingRepositories;
 
     @Override
-    public groupSetting addGroupSetting(groupSetting groupSettings) {
+    public GroupSetting addGroupSetting(GroupSetting groupSettings) {
       return groupSettingRepositories.save(groupSettings);
     }
 
     @Override
-    public groupSetting editgrGroupSetting(groupSetting groupSettings) {
+    public GroupSetting editgrGroupSetting(GroupSetting groupSettings) {
       return groupSettingRepositories.save(groupSettings);
     }
 
     @Override
-    public List<groupSetting> getGroupSetting() {
+    public List<GroupSetting> getGroupSetting() {
         return groupSettingRepositories.findAll();
     }
 
 
     @Override
-    public groupSetting getGroupSettingByGroupSettingId(Long groupSettingId) {
+    public GroupSetting getGroupSettingByGroupSettingId(Long groupSettingId) {
       return groupSettingRepositories.findGroupSettingByGroupSettingId(groupSettingId);
     }
     

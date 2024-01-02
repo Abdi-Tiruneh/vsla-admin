@@ -8,17 +8,14 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-
-
-@Entity
 @Getter
 @Setter
+@Entity
 @RequiredArgsConstructor
 
-public class groupSetting {
+public class GroupSetting {
 @Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-
+@GeneratedValue(strategy = GenerationType.AUTO)
 private Long groupSettingId;
 private Double minGroupMember;
 private Double maxGroupMember;

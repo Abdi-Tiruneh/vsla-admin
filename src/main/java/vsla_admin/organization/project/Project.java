@@ -10,6 +10,7 @@ import org.hibernate.annotations.Where;
 import vsla_admin.organization.organization.Organization;
 import vsla_admin.utils.Status;
 
+import java.security.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -39,10 +40,25 @@ public class Project {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @JsonIgnore
     private boolean deleted = Boolean.FALSE;
+    
+    
+    
+    @Column(name = "description", nullable = false)
+    private String description;
+    
+    @Column(name = "area", nullable = false)
+    private String area;
+    
+    @Column(name = "ending_date")
+    private Timestamp endingDate;
+    
+
+
 }

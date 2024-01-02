@@ -37,6 +37,11 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.getAllProjectsByOrganization(organizationId));
     }
 
+    @GetMapping("/{projectId}")
+    public ResponseEntity<List<Project>> getProjects(@PathVariable Long projectId) {
+        return ResponseEntity.ok(projectService.getAllProjectsByprojectId(projectId));
+    }
+
     @DeleteMapping({"/{projectId}"})
     public ResponseEntity<ApiResponse> deleteProject(@PathVariable Long projectId) {
         projectService.deleteProject(projectId);
