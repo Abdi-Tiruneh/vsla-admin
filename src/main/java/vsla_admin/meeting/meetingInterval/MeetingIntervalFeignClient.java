@@ -16,3 +16,4 @@ public interface MeetingIntervalFeignClient {
     @PutMapping("/{meetingId}")
     ResponseEntity<?> updateMeetingInterval(@PathVariable Long meetingId, @RequestBody MeetingIntervalReq meetingIntervalReq);
 }
+

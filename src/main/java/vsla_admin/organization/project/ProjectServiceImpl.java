@@ -26,7 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
         project.setStatus(Status.ACTIVE);
         project.setOrganization(loggedInUser.getOrganization());
         project.setDescription(projectReq.getDescription());
-        project.setArea(projectReq.getArea());
+        project.setEndingDate(projectReq.getEndingDate());
 
         return projectRepository.save(project);
     }
@@ -38,7 +38,7 @@ public class ProjectServiceImpl implements ProjectService {
         if (projectReq.getProjectName() != null)
             project.setProjectName(projectReq.getProjectName());
             project.setDescription(projectReq.getDescription());
-            project.setArea(projectReq.getArea());
+            project.setEndingDate(projectReq.getEndingDate());
 
         return projectRepository.save(project);
     }

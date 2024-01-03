@@ -11,6 +11,7 @@ import vsla_admin.organization.organization.Organization;
 import vsla_admin.utils.Status;
 
 import java.security.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -57,7 +58,7 @@ public class Project {
     private String area;
     
     @Column(name = "ending_date")
-    private Timestamp endingDate;
+    private LocalDate endingDate;
     
 
 

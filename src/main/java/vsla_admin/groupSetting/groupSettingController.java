@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
 import vsla_admin.Response.createResponse;
+import vsla_admin.userManager.user.Users;
+import vsla_admin.utils.CurrentlyLoggedInUser;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,9 +28,12 @@ public class GroupSettingController {
 
     @Autowired 
     private final GroupSettingService groupSettingServices;
+    private final CurrentlyLoggedInUser currentlyLoggedInUser;
      
     @PostMapping("/add")
     public ResponseEntity<createResponse> addGroupSetting (@RequestBody GroupSetting groupSettings) {
+         Users loggedInUser = currentlyLoggedInUser.getUser();
+         groupSettings.setOrganization(loggedInUser.getOrganization());
         groupSettingServices.addGroupSetting(groupSettings);
         createResponse response = new createResponse("success", "groupSetting created sucessfully");
         return new ResponseEntity<>(response, HttpStatus.OK);

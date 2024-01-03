@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import vsla_admin.exceptions.customExceptions.BadRequestException;
+import vsla_admin.exceptions.customExceptions.UnauthorizedException;
+import vsla_admin.userManager.user.Users;
+import vsla_admin.utils.CurrentlyLoggedInUser;
 
 @Service
 @RequiredArgsConstructor
@@ -13,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class GroupSettingServiceImpl implements GroupSettingService{
     @Autowired
     private final GroupSettingRepository groupSettingRepositories;
+    private final CurrentlyLoggedInUser currentlyLoggedInUser;
 
     @Override
     public GroupSetting addGroupSetting(GroupSetting groupSettings) {
@@ -21,12 +26,21 @@ public class GroupSettingServiceImpl implements GroupSettingService{
 
     @Override
     public GroupSetting editgrGroupSetting(GroupSetting groupSettings) {
-      return groupSettingRepositories.save(groupSettings);
+      Users loggedInUser = currentlyLoggedInUser.getUser();
+      if(loggedInUser.getOrganization().getOrganizationId().compareTo(groupSettings.getOrganization().getOrganizationId())!=0)
+      {
+        throw new UnauthorizedException("user is not authorized");
+      }
+      else{
+           return groupSettingRepositories.save(groupSettings);
+      }
+   
     }
 
     @Override
     public List<GroupSetting> getGroupSetting() {
-        return groupSettingRepositories.findAll();
+       Users loggedInUser = currentlyLoggedInUser.getUser();
+        return groupSettingRepositories.findGroupSettingByOrganization(loggedInUser.getOrganization());
     }
 
 
