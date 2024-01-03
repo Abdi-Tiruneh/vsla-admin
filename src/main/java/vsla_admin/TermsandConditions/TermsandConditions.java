@@ -23,6 +23,7 @@ public class TermsandConditions {
     private Long termsandConditionsId;
     private String title;
     private String description;
+    private Boolean isActive;
 
     @ManyToOne
     @JsonIgnore

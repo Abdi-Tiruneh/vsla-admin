@@ -27,6 +27,8 @@ public class GroupSetting {
     private Double minPayableAmount;
     private Double maxPayableAmount;
     private String status;
+    private Boolean isActive;
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "organization_id")
