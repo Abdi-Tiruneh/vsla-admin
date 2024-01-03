@@ -29,7 +29,7 @@ public class UserRegistrationReq {
     private String password;
 
     @NotNull(message = "Role is required")
-    private Short roleId; // string representation of the role
+    private Long roleId; // string representation of the role
 
     @NotNull(message = "Project is required")
     private Long companyId; // string representation of the role
