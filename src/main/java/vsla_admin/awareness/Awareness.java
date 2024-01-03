@@ -44,8 +44,7 @@ public class Awareness {
     @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-
-    @CreationTimestamp
+    
     @Column(name = "group_Id")
     private Long group_Id;
 

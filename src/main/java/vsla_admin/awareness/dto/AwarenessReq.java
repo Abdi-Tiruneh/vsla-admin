@@ -22,6 +22,7 @@ public class AwarenessReq {
 
     @NotBlank(message = "Video Url is required")
     private String videoUrl;
-    List<GroupDto> groups;
+
+    private List<GroupDto> groups;
     
 }
