@@ -1,6 +1,9 @@
 package vsla_admin.organization.project;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,8 +13,6 @@ import org.hibernate.annotations.Where;
 import vsla_admin.organization.organization.Organization;
 import vsla_admin.utils.Status;
 
-import java.security.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -54,12 +55,8 @@ public class Project {
     @Column(name = "description", nullable = false)
     private String description;
     
-    @Column(name = "area", nullable = false)
-    private String area;
-    
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = Shape.STRING)
     @Column(name = "ending_date")
-    private LocalDate endingDate;
-    
-
+    private String endingDate;
 
 }

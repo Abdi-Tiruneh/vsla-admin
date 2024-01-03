@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
 import vsla_admin.Response.createResponse;
+import vsla_admin.loanSetting.loanSetting;
+import vsla_admin.userManager.user.Users;
+import vsla_admin.utils.CurrentlyLoggedInUser;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,38 +27,42 @@ public class TipsController {
 
     @Autowired
     private final TipsService tipsService;
-
+    private final CurrentlyLoggedInUser currentlyLoggedInUser;
 
     @GetMapping("/getTips")
     List<Tips> getTips() {
         return this.tipsService.getTips();
-        
-    }
 
+    }
 
     @GetMapping("/{TipsId}")
     Tips geTips(@PathVariable Long TipsId) {
         return tipsService.getTipsByTipsId(TipsId);
     }
 
+    @PostMapping("/add")
+    // public ResponseEntity<createResponse> addTips (@RequestBody Tips tips){
+    // tipsService.addTips(tips);
+    // createResponse response = new createResponse("success", "Tips created
+    // sucessfully");
+    // return new ResponseEntity<>(response, HttpStatus.OK);
 
-      @PostMapping("/add")
-    public ResponseEntity<createResponse> addTips (@RequestBody Tips tips){
+    // }
+
+    Tips addTips(@RequestBody Tips tips) {
+        Users loggedInUser = currentlyLoggedInUser.getUser();
+        tips.setOrganization(loggedInUser.getOrganization());
         tipsService.addTips(tips);
-        createResponse response = new createResponse("success", "Tips created sucessfully");
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return tipsService.addTips(tips);
 
     }
 
     @PutMapping("/edit/{TipsId}")
-    Tips edTips(@RequestBody Tips tempTips , @PathVariable Long TipsId) {
+    Tips edTips(@RequestBody Tips tempTips, @PathVariable Long TipsId) {
         Tips tips = this.tipsService.getTipsByTipsId(TipsId);
         tips.setTitle(tempTips.getTitle());
         tips.setDescription(tempTips.getDescription());
         return tipsService.editTips(tips);
     }
-    
+
 }
-
-
-    

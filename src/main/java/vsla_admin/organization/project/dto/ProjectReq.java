@@ -1,7 +1,5 @@
 package vsla_admin.organization.project.dto;
 
-import java.time.LocalDate;
-
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -11,7 +9,7 @@ public class ProjectReq {
     private String projectName;
     @NotBlank(message = "Project description is required")
     private String description;
-    @NotBlank(message = "Project area is required")
-    private LocalDate endingDate;
+    @NotBlank(message = "endingDate is required")
+    private String endingDate;
     
 }
