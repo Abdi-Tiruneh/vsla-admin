@@ -12,7 +12,7 @@ import vsla_admin.utils.CurrentlyLoggedInUser;
 
 @RequiredArgsConstructor
 @Service
-public class MeetingServiceImpl implements MeetingIntervalService {
+public class MeetingIntervalServiceImpl implements MeetingIntervalService {
      @Autowired
     private final MeetingIntervalRepository meetingIntervalRepository;
     private final CurrentlyLoggedInUser currentlyLoggedInUser;  

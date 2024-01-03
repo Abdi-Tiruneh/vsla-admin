@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import vsla_admin.organization.organization.Organization;
 
 public interface MeetingIntervalRepository extends JpaRepository<MeetingInterval,Long>{
-    MeetingInterval findMeetingIntervalByMeetingIntervalId(Long loanReasonId);
+    MeetingInterval findMeetingIntervalByMeetingIntervalId(Long meetingIntervalId);
     List<MeetingInterval> findMeetingIntervalByOrganization(Organization organization);
 }
