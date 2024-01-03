@@ -6,7 +6,7 @@ import vsla_admin.awareness.dto.AwarenessReq;
 import java.util.List;
 
 public interface AwarenessService {
-    Awareness createAwareness(AwarenessReq awarenessReq);
+    List<Awareness> createAwareness(AwarenessReq awarenessReq);
 
     Awareness updateAwareness(Long id, AwarenessReq awarenessReq);
 

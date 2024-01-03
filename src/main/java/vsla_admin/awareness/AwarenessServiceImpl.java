@@ -7,6 +7,7 @@ import vsla_admin.exceptions.customExceptions.ResourceNotFoundException;
 import vsla_admin.fileUploadManager.FileUploadService;
 import vsla_admin.utils.CurrentlyLoggedInUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,18 +19,21 @@ public class AwarenessServiceImpl implements AwarenessService {
     private final FileUploadService fileUploadService;
 
     @Override
-    public Awareness createAwareness(AwarenessReq awarenessReq) {
-
+    public List<Awareness> createAwareness(AwarenessReq awarenessReq) {
+        List<Awareness> awarenesses= new ArrayList<Awareness>();
         String imageUrl = fileUploadService.uploadFile(awarenessReq.getImage());
-
-        Awareness awareness = new Awareness();
+        awarenessReq.getGroups().stream().forEach(g->{
+            Awareness awareness = new Awareness();
         awareness.setTitle(awarenessReq.getTitle());
         awareness.setDescription(awarenessReq.getDescription());
         awareness.setImageUrl(imageUrl);
         awareness.setVideoUrl(awarenessReq.getVideoUrl());
         awareness.setOrganization(currentlyLoggedInUser.getUser().getOrganization());
-
-        return awarenessRepository.save(awareness);
+        awareness.setGroup_Id(g.getGroupId());
+        awarenessRepository.save(awareness);
+        awarenesses.add(awareness);
+        });
+        return awarenesses;
     }
 
     @Override

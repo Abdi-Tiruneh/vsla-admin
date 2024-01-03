@@ -45,6 +45,10 @@ public class Awareness {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @CreationTimestamp
+    @Column(name = "group_Id")
+    private Long group_Id;
+
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;

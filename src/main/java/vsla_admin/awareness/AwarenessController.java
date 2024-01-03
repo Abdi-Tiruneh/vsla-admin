@@ -2,7 +2,6 @@ package vsla_admin.awareness;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vsla_admin.awareness.dto.AwarenessReq;
@@ -21,9 +20,9 @@ public class AwarenessController {
     }
 
     @PostMapping
-    public ResponseEntity<Awareness> createAwareness(@ModelAttribute @Valid AwarenessReq awarenessReq) {
-        Awareness awareness = awarenessService.createAwareness(awarenessReq);
-        return ResponseEntity.status(HttpStatus.CREATED).body(awareness);
+    public List<Awareness> createAwareness(@ModelAttribute @Valid AwarenessReq awarenessReq) {
+        List<Awareness> awareness = awarenessService.createAwareness(awarenessReq);
+        return awareness;
     }
 
     @PutMapping("/{awarenessId}")

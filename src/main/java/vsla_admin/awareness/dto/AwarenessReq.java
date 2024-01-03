@@ -3,9 +3,12 @@ package vsla_admin.awareness.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
-@Data
+@Data   
 public class AwarenessReq {
 
     @NotBlank(message = "Title is required")
@@ -19,4 +22,6 @@ public class AwarenessReq {
 
     @NotBlank(message = "Video Url is required")
     private String videoUrl;
+    List<GroupDto> groups;
+    
 }
