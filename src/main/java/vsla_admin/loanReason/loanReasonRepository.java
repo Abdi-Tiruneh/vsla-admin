@@ -9,6 +9,6 @@ import vsla_admin.organization.organization.Organization;
 public interface LoanReasonRepository extends JpaRepository<LoanReason, Long> {
   LoanReason findLoanReasonByLoanReasonId(Long loanReasonId);
 
-  List<LoanReason> findLoanReasonByOrganization(Organization organization);
+  List<LoanReason> findLoanReasonByOrganizationAndIsActive(Organization organization, Boolean isActive);
 
 }

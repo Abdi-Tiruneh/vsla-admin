@@ -24,6 +24,7 @@ public class LoanReason {
     private Long loanReasonId;
     private String title;
     private String loanDescription;
+    private Boolean isActive;
 
     @ManyToOne
     @JsonIgnore

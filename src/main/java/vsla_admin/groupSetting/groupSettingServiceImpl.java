@@ -39,7 +39,7 @@ public class GroupSettingServiceImpl implements GroupSettingService{
     @Override
     public List<GroupSetting> getGroupSetting() {
        Users loggedInUser = currentlyLoggedInUser.getUser();
-        return groupSettingRepositories.findGroupSettingByOrganization(loggedInUser.getOrganization());
+        return groupSettingRepositories.findGroupSettingByOrganizationAndIsActive(loggedInUser.getOrganization(), true);
     }
 
 

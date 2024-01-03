@@ -12,6 +12,6 @@ import vsla_admin.organization.organization.Organization;
 public interface TipsRepository extends JpaRepository <Tips, Long> {
 
     Tips findTipsByTipsId(Long TipsId);
-    List<Tips> findTipsByOrganization(Organization organization);
+    List<Tips> findTipsByOrganizationAndIsActive(Organization organization, Boolean isActive);
     
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 import vsla_admin.exceptions.customExceptions.UnauthorizedException;
+import vsla_admin.organization.organization.Organization;
 import vsla_admin.userManager.user.Users;
 import vsla_admin.utils.CurrentlyLoggedInUser;
 
@@ -36,7 +37,10 @@ public class LoanResonServiceImpl implements LoanReasonSevice {
   @Override
   public List<LoanReason> getloanReasons() {
     Users loggedInUser = currentlyLoggedInUser.getUser();
-    return loanReasonRepositories.findLoanReasonByOrganization(loggedInUser.getOrganization());
+    return loanReasonRepositories.findLoanReasonByOrganizationAndIsActive(loggedInUser.getOrganization(), true);
+
+
+    
   }
 
   @Override

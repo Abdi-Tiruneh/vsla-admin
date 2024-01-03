@@ -19,7 +19,7 @@ public class TipServiceImpl implements TipsService {
     @Override
     public List<Tips> getTips() {
       Users loggedInUser = currentlyLoggedInUser.getUser();
-        return  tipsRepository.findTipsByOrganization(loggedInUser.getOrganization());
+        return  tipsRepository.findTipsByOrganizationAndIsActive(loggedInUser.getOrganization(), true);
      
     }
 

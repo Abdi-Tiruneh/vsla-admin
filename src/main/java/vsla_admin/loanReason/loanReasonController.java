@@ -58,6 +58,7 @@ public class LoanReasonController {
         LoanReason loanReasons = this.loanReasonSevices.getLoanReasonByLoanReasonId(loanReasonId);
         loanReasons.setLoanDescription(tempLoanReason.getLoanDescription());
         loanReasons.setTitle(tempLoanReason.getTitle());
+        loanReasons.setIsActive(tempLoanReason.getIsActive());
         return loanReasonSevices.editLoanReason(loanReasons);
 
     }

@@ -10,7 +10,7 @@ import vsla_admin.organization.organization.Organization;
 public interface TermsandConditionsRepository extends JpaRepository<TermsandConditions, Long> {
 
       TermsandConditions findTermsandConditionsByTermsandConditionsId( Long termsandConditionsId);
-      List<TermsandConditions> findTermsandConditionsByOrganization(Organization organization);
+      List<TermsandConditions> findTermsandConditionsByOrganizationAndIsActive(Organization organization, Boolean isActive);
    
 
     

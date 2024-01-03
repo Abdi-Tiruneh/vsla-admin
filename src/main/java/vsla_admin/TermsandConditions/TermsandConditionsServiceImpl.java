@@ -40,7 +40,7 @@ public class TermsandConditionsServiceImpl implements TermsandConditionsService 
   @Override
   public List<TermsandConditions> getTermsandConditions() {
     Users loggedInUser = currentlyLoggedInUser.getUser();
-    return TermsandConditionsRepositories.findTermsandConditionsByOrganization(loggedInUser.getOrganization());
+    return TermsandConditionsRepositories.findTermsandConditionsByOrganizationAndIsActive(loggedInUser.getOrganization(), true);
   }
 
   @Override

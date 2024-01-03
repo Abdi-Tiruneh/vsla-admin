@@ -9,7 +9,7 @@ import vsla_admin.organization.organization.Organization;
 public interface GroupSettingRepository extends JpaRepository<GroupSetting,Long>{
 
     GroupSetting findGroupSettingByGroupSettingId(Long groupSettingId);
-    List<GroupSetting> findGroupSettingByOrganization(Organization organization);
+    List<GroupSetting> findGroupSettingByOrganizationAndIsActive(Organization organization, Boolean isActivBoolean);
     
 }
 

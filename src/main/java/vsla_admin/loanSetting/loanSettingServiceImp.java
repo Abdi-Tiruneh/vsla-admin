@@ -37,7 +37,7 @@ public class loanSettingServiceImp implements loanSettingService{
     @Override
     public List<loanSetting> getloanSetting() {
        Users loggedInUser = currentlyLoggedInUser.getUser();
-       return loanSettingRepositories.findLoanSettingByOrganization(loggedInUser.getOrganization());
+       return loanSettingRepositories.findLoanSettingByOrganizationandIsActive(loggedInUser.getOrganization(), true);
     }
 
 
