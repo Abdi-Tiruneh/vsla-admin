@@ -7,5 +7,6 @@ import vsla_admin.organization.organization.Organization;
 
 public interface MeetiongTypeRepository extends JpaRepository<MeetingType,Long> {
      MeetingType findMeetingTypeByMeetingTypeId(Long meetingTypeId);
-     List<MeetingType> findMeetingTypeByOrganization(Organization organization);
+     List<MeetingType> findMeetingTypeByOrganizationAndIsActive(Organization organization,Boolean isActive );
+      List<MeetingType> findMeetingTypeByIsActive(Boolean isActive );
 }

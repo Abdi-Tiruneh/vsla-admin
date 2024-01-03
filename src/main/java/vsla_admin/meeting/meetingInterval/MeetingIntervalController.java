@@ -39,7 +39,11 @@ public class MeetingIntervalController {
     
     @GetMapping("/getAll")
     List<MeetingInterval> get() {
-        return meetingIntervalService.getMeetingInterval();
+        return meetingIntervalService.getMeetingIntervalByOrganization();
+    }
+    @GetMapping("/getAll/App")
+    List<MeetingInterval> getForApp() {
+        return meetingIntervalService.getMeetingIntervalForApp();
     }
      @GetMapping("getById/{meetingIntervalId}")
     MeetingInterval getMeetingInterval(@PathVariable Long meetingIntervalId) {
@@ -56,6 +60,10 @@ public class MeetingIntervalController {
      @PostMapping("/add")
      MeetingInterval addMeetingInterval(@RequestBody MeetingInterval meetingInterval) {
         return meetingIntervalService.addmeetingInterval(meetingInterval);
+    }
+    @DeleteMapping("/delete/{meetingIntervalId}")
+    MeetingInterval deleteMeetingInterval(@PathVariable Long meetingIntervalId) {
+        return meetingIntervalService.deleteMeetingInterval(meetingIntervalId);
     }
     
 }

@@ -30,7 +30,8 @@ public class MeetingTypeServiceImpl implements MeetingTypeService {
 
     @Override
     public List<MeetingType> getMeetingType() {
-       return meetiongTypeRepository.findAll();
+       Users loggedInUser = currentlyLoggedInUser.getUser();
+       return meetiongTypeRepository.findMeetingTypeByOrganizationAndIsActive(loggedInUser.getOrganization(),true);
     }
 
     @Override
@@ -43,6 +44,18 @@ public class MeetingTypeServiceImpl implements MeetingTypeService {
         Users loggedInUser = currentlyLoggedInUser.getUser();
         meetingType.setOrganization(loggedInUser.getOrganization());
         return meetiongTypeRepository.save(meetingType);
+    }
+
+    @Override
+    public MeetingType deleteMeetingType(Long meetingTypeId) {
+       MeetingType meetingType=meetiongTypeRepository.findMeetingTypeByMeetingTypeId(meetingTypeId);
+       meetingType.setIsActive(false);
+       return meetiongTypeRepository.save(meetingType);
+    }
+
+    @Override
+    public List<MeetingType> getMeetingTypeForApp() {
+       return meetiongTypeRepository.findMeetingTypeByIsActive(true);
     }
     
 }

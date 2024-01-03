@@ -2,6 +2,7 @@ package vsla_admin.meeting.meetingType;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,10 @@ public class MeetingTypeController {
     List<MeetingType> get() {
         return meetingTypeService.getMeetingType();
     }
+    @GetMapping("/getAll/App")
+    List<MeetingType> getForApp() {
+        return meetingTypeService.getMeetingTypeForApp();
+    }
      @GetMapping("getById/{meetingTypeId}")
     MeetingType getMeetingType(@PathVariable Long meetingTypeId) {
         return meetingTypeService.getMeetingTypeByMeetingTypeId(meetingTypeId);
@@ -51,6 +56,10 @@ public class MeetingTypeController {
      @PostMapping("/add")
      MeetingType addMeetingType(@RequestBody MeetingType meetingType) {
         return meetingTypeService.addMeetingType(meetingType);
+    }
+     @DeleteMapping("/delete/{meetingTypeId}")
+    MeetingType deleteMeetingType(@PathVariable Long meetingTypeId) {
+        return meetingTypeService.deleteMeetingType(meetingTypeId);
     }
 }
 

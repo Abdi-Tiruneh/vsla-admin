@@ -7,5 +7,6 @@ import vsla_admin.organization.organization.Organization;
 
 public interface MeetingIntervalRepository extends JpaRepository<MeetingInterval,Long>{
     MeetingInterval findMeetingIntervalByMeetingIntervalId(Long meetingIntervalId);
-    List<MeetingInterval> findMeetingIntervalByOrganization(Organization organization);
+    List<MeetingInterval> findMeetingIntervalByOrganizationAndIsActive(Organization organization,Boolean isActive);
+     List<MeetingInterval> findMeetingIntervalByIsActive(Boolean isActive);
 }
