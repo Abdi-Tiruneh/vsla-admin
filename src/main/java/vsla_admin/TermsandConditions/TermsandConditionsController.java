@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
 import vsla_admin.Response.createResponse;
+import vsla_admin.loanSetting.loanSetting;
+import vsla_admin.userManager.user.Users;
+import vsla_admin.utils.CurrentlyLoggedInUser;
 
 @RestController
 @RequestMapping("api/v1/TermsandConditions")
@@ -24,13 +27,21 @@ public class TermsandConditionsController {
 
     @Autowired
     private final TermsandConditionsService termsandConditionsService;
+    private final CurrentlyLoggedInUser currentlyLoggedInUser;
 
      @PostMapping("/add")
-    public ResponseEntity<createResponse> addTermsandConditions (@RequestBody TermsandConditions termsandConditions) {
-        termsandConditionsService.addTermsandConditions(termsandConditions);
-        createResponse response = new createResponse("success", "TermsandConditions created sucessfully");
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+    // public ResponseEntity<createResponse> addTermsandConditions (@RequestBody TermsandConditions termsandConditions) {
+    //     termsandConditionsService.addTermsandConditions(termsandConditions);
+    //     createResponse response = new createResponse("success", "TermsandConditions created sucessfully");
+    //     return new ResponseEntity<>(response, HttpStatus.OK);
+    // }
+
+        TermsandConditions addTermsandConditions(@RequestBody TermsandConditions termsandConditions){
+             Users loggedInUser = currentlyLoggedInUser.getUser();
+             termsandConditions.setOrganization(loggedInUser.getOrganization());
+             termsandConditionsService.addTermsandConditions(termsandConditions);
+             return termsandConditionsService.addTermsandConditions(termsandConditions);
+        }
 
     @GetMapping("/getTermsandConditions")
     List<TermsandConditions> getTermsandConditions() {

@@ -9,5 +9,5 @@ import vsla_admin.organization.organization.Organization;
 public interface loanSettingRepository extends JpaRepository<loanSetting, Long> {
     
        loanSetting findLoanSettingByLoanSettingId(Long loanSettingId);
-       List<loanSetting> findLoanSettingByOrganization(Organization organization );
+       List<loanSetting> findLoanSettingByOrganizationAndIsActive(Organization organization , Boolean isActive);
 }

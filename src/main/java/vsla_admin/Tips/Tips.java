@@ -23,6 +23,7 @@ public class Tips {
     private Long tipsId;
     private String Title;
     private String Description;
+    private Boolean isActive;
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "organization_id")

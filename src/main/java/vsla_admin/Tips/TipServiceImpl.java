@@ -5,16 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
+import vsla_admin.exceptions.customExceptions.UnauthorizedException;
+import vsla_admin.userManager.user.Users;
+import vsla_admin.utils.CurrentlyLoggedInUser;
 
 @Service
 @RequiredArgsConstructor
 public class TipServiceImpl implements TipsService {
     @Autowired
-    private final TipsRepository tipsRepository;;
+    private final TipsRepository tipsRepository;
+    private final CurrentlyLoggedInUser currentlyLoggedInUser;
 
     @Override
     public List<Tips> getTips() {
-        return  tipsRepository.findAll();
+      Users loggedInUser = currentlyLoggedInUser.getUser();
+        return  tipsRepository.findTipsByOrganizationAndIsActive(loggedInUser.getOrganization(), true);
      
     }
 
@@ -25,7 +30,14 @@ public class TipServiceImpl implements TipsService {
 
     @Override
     public Tips editTips(Tips tips) {
-      return tipsRepository.save(tips);
+       Users loggedInUser = currentlyLoggedInUser.getUser();
+    if (loggedInUser.getOrganization().getOrganizationId()
+        .compareTo(tips.getOrganization().getOrganizationId()) != 0) {
+      throw new UnauthorizedException("user is not authorized");
+    } else {
+     return tipsRepository.save(tips);
+    }
+     
     }
 
     @Override

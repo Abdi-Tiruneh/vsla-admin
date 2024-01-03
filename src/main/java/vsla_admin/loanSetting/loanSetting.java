@@ -26,6 +26,7 @@ public class loanSetting {
     private Double loanPerYear;
     private Double loanInterest;
     private Double paymentInterval;
+    private Boolean isActive;
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "organization_id")
