@@ -11,6 +11,8 @@ public interface AwarenessService {
     Awareness updateAwareness(Long id, AwarenessReq awarenessReq);
 
     List<Awareness> getAllAwarenessByOrganization(Long organizationId);
+    
+    List<Awareness> getAllAwarenessByGroupId(Long groupId);
 
     List<Awareness> getAllAwarenessByOrganization();
 

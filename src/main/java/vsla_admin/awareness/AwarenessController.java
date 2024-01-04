@@ -36,6 +36,12 @@ public class AwarenessController {
         return ResponseEntity.ok(awarenessService.getAllAwarenessByOrganization(organizationId));
     }
 
+    @GetMapping("/by-group/{groupId}")
+    public ResponseEntity<List<Awareness>> getAllAwarenessByGroupId(@PathVariable Long groupId) {
+        return ResponseEntity.ok(awarenessService.getAllAwarenessByGroupId(groupId));
+    }
+
+
     @GetMapping
     public ResponseEntity<List<Awareness>> getAllAwarenessByOrganization() {
         return ResponseEntity.ok(awarenessService.getAllAwarenessByOrganization());

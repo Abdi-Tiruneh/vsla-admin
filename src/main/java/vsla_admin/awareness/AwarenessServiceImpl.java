@@ -29,7 +29,7 @@ public class AwarenessServiceImpl implements AwarenessService {
         awareness.setImageUrl(imageUrl);
         awareness.setVideoUrl(awarenessReq.getVideoUrl());
         awareness.setOrganization(currentlyLoggedInUser.getUser().getOrganization());
-        awareness.setGroup_Id(g.getGroupId());
+        awareness.setGroupId(g.getGroupId());
         awarenessRepository.save(awareness);
         awarenesses.add(awareness);
         });
@@ -81,5 +81,10 @@ public class AwarenessServiceImpl implements AwarenessService {
     public void deleteAwareness(Long id) {
         getAwarenessById(id);
         awarenessRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Awareness> getAllAwarenessByGroupId(Long groupId) {
+        return awarenessRepository.findByGroupId(groupId);
     }
 }

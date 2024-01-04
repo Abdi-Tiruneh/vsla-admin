@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface AwarenessRepository extends JpaRepository<Awareness, Long> {
     List<Awareness> findByOrganizationOrganizationId(Long organizationId);
+    List<Awareness> findByGroupId(Long groupId);
 }
