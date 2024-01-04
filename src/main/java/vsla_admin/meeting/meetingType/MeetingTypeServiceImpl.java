@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import vsla_admin.exceptions.customExceptions.UnauthorizedException;
+import vsla_admin.organization.organization.Organization;
+import vsla_admin.organization.organization.OrganizationRepository;
 import vsla_admin.userManager.user.Users;
 import vsla_admin.utils.CurrentlyLoggedInUser;
 
@@ -16,6 +18,7 @@ public class MeetingTypeServiceImpl implements MeetingTypeService {
     @Autowired
     private final MeetiongTypeRepository meetiongTypeRepository;
     private final CurrentlyLoggedInUser currentlyLoggedInUser;  
+    private final OrganizationRepository organizationRepository;
     @Override
     public MeetingType editMeetingType(MeetingType meetingType) {
        Users loggedInUser = currentlyLoggedInUser.getUser();
@@ -54,8 +57,10 @@ public class MeetingTypeServiceImpl implements MeetingTypeService {
     }
 
     @Override
-    public List<MeetingType> getMeetingTypeForApp() {
-       return meetiongTypeRepository.findMeetingTypeByIsActive(true);
+    public List<MeetingType> getMeetingTypeForApp(Long organizationId) {
+        Organization organization=organizationRepository.findByOrganizationId(organizationId);
+        System.out.println(organization.getOrganizationName());
+       return meetiongTypeRepository.findMeetingTypeByOrganizationAndIsActive(organization,true);
     }
     
 }

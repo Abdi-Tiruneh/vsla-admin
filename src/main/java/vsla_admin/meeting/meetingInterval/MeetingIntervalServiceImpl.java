@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import vsla_admin.exceptions.customExceptions.UnauthorizedException;
 import vsla_admin.organization.organization.Organization;
+import vsla_admin.organization.organization.OrganizationRepository;
 import vsla_admin.userManager.user.Users;
 import vsla_admin.utils.CurrentlyLoggedInUser;
 
@@ -16,7 +17,8 @@ import vsla_admin.utils.CurrentlyLoggedInUser;
 public class MeetingIntervalServiceImpl implements MeetingIntervalService {
      @Autowired
     private final MeetingIntervalRepository meetingIntervalRepository;
-    private final CurrentlyLoggedInUser currentlyLoggedInUser;  
+    private final CurrentlyLoggedInUser currentlyLoggedInUser; 
+    private final OrganizationRepository organizationRepository; 
 
     @Override
     public MeetingInterval editMeetingInterval(MeetingInterval meetingInterval) {
@@ -56,8 +58,9 @@ public class MeetingIntervalServiceImpl implements MeetingIntervalService {
     }
 
     @Override
-    public List<MeetingInterval> getMeetingIntervalForApp() {
-       return meetingIntervalRepository.findMeetingIntervalByIsActive(true);
+    public List<MeetingInterval> getMeetingIntervalForApp(Long organizationId) {
+        Organization organization=organizationRepository.findByOrganizationId(organizationId);
+       return meetingIntervalRepository.findMeetingIntervalByOrganizationAndIsActive(organization, true);
     }
     
 }

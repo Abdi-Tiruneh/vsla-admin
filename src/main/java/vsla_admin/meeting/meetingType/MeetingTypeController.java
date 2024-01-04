@@ -38,9 +38,9 @@ public class MeetingTypeController {
     List<MeetingType> get() {
         return meetingTypeService.getMeetingType();
     }
-    @GetMapping("/getAll/App")
-    List<MeetingType> getForApp() {
-        return meetingTypeService.getMeetingTypeForApp();
+    @GetMapping("/getAll/App/{organizationId}")
+    List<MeetingType> getForApp(@PathVariable Long organizationId) {
+        return meetingTypeService.getMeetingTypeForApp(organizationId);
     }
      @GetMapping("getById/{meetingTypeId}")
     MeetingType getMeetingType(@PathVariable Long meetingTypeId) {

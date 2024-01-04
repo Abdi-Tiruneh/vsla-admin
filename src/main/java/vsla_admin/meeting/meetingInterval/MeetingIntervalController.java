@@ -41,9 +41,9 @@ public class MeetingIntervalController {
     List<MeetingInterval> get() {
         return meetingIntervalService.getMeetingIntervalByOrganization();
     }
-    @GetMapping("/getAll/App")
-    List<MeetingInterval> getForApp() {
-        return meetingIntervalService.getMeetingIntervalForApp();
+    @GetMapping("/getAll/App/{organizationId}")
+    List<MeetingInterval> getForApp(@PathVariable Long organizationId) {
+        return meetingIntervalService.getMeetingIntervalForApp(organizationId);
     }
      @GetMapping("getById/{meetingIntervalId}")
     MeetingInterval getMeetingInterval(@PathVariable Long meetingIntervalId) {
