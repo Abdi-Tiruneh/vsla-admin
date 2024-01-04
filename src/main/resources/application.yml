@@ -39,4 +39,4 @@ JWT_SECRET_KEY:
 
 # vsla base url
 VSLA_APP:
-  BASE_URL: http://10.1.177.121:8111/api/v1/
+  BASE_URL: http://localhost:8111/api/v1/
