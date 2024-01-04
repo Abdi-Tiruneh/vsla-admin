@@ -1,8 +1,10 @@
 package vsla_admin.loanReason;
 
 import java.util.List;
-
+//import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +25,6 @@ import vsla_admin.utils.CurrentlyLoggedInUser;
 public class LoanReasonController {
     @Autowired
     private final LoanReasonSevice loanReasonSevices;
-    private final LoanReasonRepository loanReasonRepositories;
 
     private final CurrentlyLoggedInUser currentlyLoggedInUser;
 
@@ -59,12 +60,16 @@ public class LoanReasonController {
         loanReasons.setLoanDescription(tempLoanReason.getLoanDescription());
         loanReasons.setTitle(tempLoanReason.getTitle());
         return loanReasonSevices.editLoanReason(loanReasons);
-
     }
 
-         @DeleteMapping("/delete/{loanReasonId}")
-  void deleteLoanReason(@PathVariable Long loanReasonId) {
-    this.loanReasonRepositories.deleteById(loanReasonId);
-  }
+    @DeleteMapping("/delete/{loanReasonId}")
+    public ResponseEntity<?> deleteLoanReason(@PathVariable Long loanReasonId) {
+        LoanReason deletedLoanReason = loanReasonSevices.getLoanReasonByLoanReasonId(loanReasonId);
+        if (deletedLoanReason == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("LoanRasonId not found");
+        }
+        loanReasonSevices.deleteLoanReason(loanReasonId);
+        return ResponseEntity.ok(deletedLoanReason);
+    }
 
 }

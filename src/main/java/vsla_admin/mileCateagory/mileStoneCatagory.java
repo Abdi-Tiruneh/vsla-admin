@@ -19,7 +19,10 @@ public class mileStoneCatagory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mileStoneCatagoryId;
-    private int value;
+    private String name;
+    private double value;
+    private String category;
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "organization_id")

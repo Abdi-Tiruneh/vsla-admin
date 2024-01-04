@@ -8,5 +8,12 @@ public interface LoanReasonSevice {
     List<LoanReason> getloanReasons();
     LoanReason getLoanReasonByLoanReasonId(Long loanReasonId);
     LoanReason addLoanReason( LoanReason loanReason);
+    LoanReason  deleteLoanReason( Long loanReasonId);
      
 }
+
+
+
+
+
+

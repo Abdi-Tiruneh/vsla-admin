@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
 import vsla_admin.Response.createResponse;
+import vsla_admin.loanReason.LoanReason;
 import vsla_admin.loanSetting.loanSetting;
 import vsla_admin.userManager.user.Users;
 import vsla_admin.utils.CurrentlyLoggedInUser;
@@ -67,9 +68,17 @@ public class TipsController {
         return tipsService.editTips(tips);
     }
 
-          @DeleteMapping("/delete/{tipsId}")
-  void deleteLoanReason(@PathVariable Long tipsId) {
-    this.tipsRepositories.deleteById(tipsId);
-  }
+    @DeleteMapping("/delete/{tipsId}")
+    public ResponseEntity<?> deleteTips(@PathVariable Long tipsId) {
+        Tips deletedTips = tipsService.getTipsByTipsId(tipsId);
+        if(deletedTips == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("TipsId not found");
+        }
+        tipsService.deleteTips(tipsId);
+        return ResponseEntity.ok(deletedTips);
+      
 
-}
+    }
+    }
+
+

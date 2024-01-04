@@ -10,6 +10,7 @@ public interface TipsService {
     Tips editTips(Tips tips);
     List<Tips> getTips();
     Tips getTipsByTipsId(Long TipsId); 
+    Tips deleteTips (Long tipsId);
 
     
 }

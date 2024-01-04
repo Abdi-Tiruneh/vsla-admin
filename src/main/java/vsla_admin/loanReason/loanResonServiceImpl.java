@@ -1,6 +1,8 @@
 package vsla_admin.loanReason;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +41,6 @@ public class LoanResonServiceImpl implements LoanReasonSevice {
     Users loggedInUser = currentlyLoggedInUser.getUser();
     return loanReasonRepositories.findLoanReasonByOrganizationAndIsActive(loggedInUser.getOrganization(), true);
 
-
-    
   }
 
   @Override
@@ -51,6 +51,15 @@ public class LoanResonServiceImpl implements LoanReasonSevice {
   @Override
   public LoanReason addLoanReason(LoanReason loanReason) {
     return loanReasonRepositories.save(loanReason);
+  }
+
+
+  @Override
+  public LoanReason deleteLoanReason(Long loanReasonId) {
+    LoanReason deleteLoanReason = loanReasonRepositories.findLoanReasonByLoanReasonId(loanReasonId);
+    deleteLoanReason.setIsActive(false);
+    loanReasonRepositories.save(deleteLoanReason);
+    return deleteLoanReason;
   }
 
 }

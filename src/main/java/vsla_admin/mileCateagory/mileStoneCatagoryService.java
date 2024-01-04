@@ -13,17 +13,17 @@ public class mileStoneCatagoryService {
         this.mileStoneCatagoryRepositories = mileStoneCatagoryRepositories;
 }
  
-public String getCatagory(int value) {
-    if(value>= 1000 && value < 5000) {
-    return "Bronze Level";
-    } else if(value>= 5000 && value < 10000) {
-        return "Gold Level";
-    } else if (value >= 10000 && value < 30000) {
-       return "silver Level";
-    } else if(value >= 30000) {
-        return "Platinum Level";
-    } else {
-        return "Unknown";
-    }
-}  
+// public String getCatagory(int value) {
+//     if(value>= 1000 && value < 5000) {
+//     return "Bronze Level";
+//     } else if(value>= 5000 && value < 10000) {
+//         return "Gold Level";
+//     } else if (value >= 10000 && value < 30000) {
+//        return "silver Level";
+//     } else if(value >= 30000) {
+//         return "Platinum Level";
+//     } else {
+//         return "Unknown";
+//     }
+// }  
 }
