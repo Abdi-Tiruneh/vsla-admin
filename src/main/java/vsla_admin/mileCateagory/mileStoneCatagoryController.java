@@ -27,20 +27,8 @@ public class mileStoneCatagoryController {
     private final CurrentlyLoggedInUser currentlyLoggedInUser;
     private final mileStoneCatagoryService mileStoneCatagoryServices;
 
-    // @GetMapping("/{mileStoneCatagoryId}")
-    // public ResponseEntity<String> getmileStoneCatagoryById(@PathVariable Long
-    // mileStoneCatagoryId) {
-    // mileStoneCatagory mileStoneCatagorys =
-    // mileStoneCatagoryRepositories.findMileStoneCatagoryByMileStoneCatagoryId(mileStoneCatagoryId);
-    // if (mileStoneCatagorys != null) {
-    // int value = mileStoneCatagorys.getValue();
-    // String category = mileStoneCatagoryServices.getCatagory(value);
-    // return ResponseEntity.ok(category);
-    // } else {
-    // return ResponseEntity.notFound().build();
+   
 
-    // }
-    // }
     @GetMapping("/getMileStoneCategory")
          List<mileStoneCatagory> getMileStoneCatagory() {
       return this.mileStoneCatagoryServices.getMileStoneCatagory();
