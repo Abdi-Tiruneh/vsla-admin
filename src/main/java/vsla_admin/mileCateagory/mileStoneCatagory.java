@@ -23,6 +23,7 @@ public class mileStoneCatagory {
     private double value;
     private String category;
 
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "organization_id")

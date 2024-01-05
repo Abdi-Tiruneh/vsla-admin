@@ -1,8 +1,10 @@
 package vsla_admin.mileCateagory;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import vsla_admin.groupSetting.GroupSetting;
 import vsla_admin.userManager.user.Users;
 import vsla_admin.utils.CurrentlyLoggedInUser;
 
@@ -20,10 +23,9 @@ import vsla_admin.utils.CurrentlyLoggedInUser;
 
 public class mileStoneCatagoryController {
 
-    @Autowired
-    private final mileStoneCatagoryService mileStoneCatagoryServices;
     private final mileStoneCatagoryRepository mileStoneCatagoryRepositories;
     private final CurrentlyLoggedInUser currentlyLoggedInUser;
+    private final mileStoneCatagoryService mileStoneCatagoryServices;
 
     // @GetMapping("/{mileStoneCatagoryId}")
     // public ResponseEntity<String> getmileStoneCatagoryById(@PathVariable Long
@@ -39,6 +41,23 @@ public class mileStoneCatagoryController {
 
     // }
     // }
+    @GetMapping("/getMileStoneCategory")
+         List<mileStoneCatagory> getMileStoneCatagory() {
+      return this.mileStoneCatagoryServices.getMileStoneCatagory();
+    }
+   
+
+    // @GetMapping
+    // public ResponseEntity<List<mileStoneCatagory>> getUser(@PathVariable Long mileStoneCatagoryId) {
+    //    List<mileStoneCatagory> mileStoneCatagorys = mileStoneCatagoryServices.getMileStoneCatagory();
+    //    // .getMileStoneCatagory(mileStoneCatagoryId);
+    //     if (mileStoneCatagorys == null) {
+    //         return ResponseEntity.notFound().build();
+    //     }
+    //     return ResponseEntity.ok(mileStoneCatagorys);
+    
+    // }
+
 
     @PostMapping
     public ResponseEntity<mileStoneCatagory> addMileStoneCategory(@RequestBody mileStoneCatagory mileStoneCatagorys) {
