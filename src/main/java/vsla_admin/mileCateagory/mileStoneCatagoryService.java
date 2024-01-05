@@ -1,17 +1,17 @@
 package vsla_admin.mileCateagory;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
 
-public class mileStoneCatagoryService {
-    private  final mileStoneCatagoryRepository mileStoneCatagoryRepositories;
+public interface mileStoneCatagoryService {
 
-    @Autowired
-    public mileStoneCatagoryService(mileStoneCatagoryRepository mileStoneCatagoryRepositories) {
-        this.mileStoneCatagoryRepositories = mileStoneCatagoryRepositories;
-}
+   List<mileStoneCatagory> getMileStoneCatagory();
+
+    
+} 
  
 // public String getCatagory(int value) {
 //     if(value>= 1000 && value < 5000) {
@@ -26,4 +26,3 @@ public class mileStoneCatagoryService {
 //         return "Unknown";
 //     }
 // }  
-}
