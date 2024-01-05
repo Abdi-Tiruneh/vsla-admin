@@ -67,6 +67,7 @@ public class LoanResonServiceImpl implements LoanReasonSevice {
   @Override
   public List<LoanReason> getloanReasonsForApp(Long organizationId) {
     Organization organization= organizationRepository.findByOrganizationId(organizationId);
+    System.out.println(organization.getOrganizationName());
     return loanReasonRepositories.findLoanReasonByOrganizationAndIsActive(organization, true);
   }
 
