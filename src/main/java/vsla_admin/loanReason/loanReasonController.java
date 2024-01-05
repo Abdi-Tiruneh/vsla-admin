@@ -48,6 +48,11 @@ public class LoanReasonController {
         return loanReasonSevices.getloanReasons();
 
     }
+     @GetMapping("/getloanReasons/App/{organizationId}")
+    List<LoanReason> getloanReasonsForApp(Long organizationId) {
+        return loanReasonSevices.getloanReasonsForApp(organizationId);
+
+    }
 
     @GetMapping("/{loanReasonId}")
     LoanReason getLoanReason(@PathVariable Long loanReasonId) {
