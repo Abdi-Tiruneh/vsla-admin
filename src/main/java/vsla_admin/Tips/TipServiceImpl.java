@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import vsla_admin.exceptions.customExceptions.UnauthorizedException;
 import vsla_admin.loanReason.LoanReason;
+import vsla_admin.organization.organization.Organization;
+import vsla_admin.organization.organization.OrganizationRepository;
 import vsla_admin.userManager.user.Users;
 import vsla_admin.utils.CurrentlyLoggedInUser;
 
@@ -16,6 +18,7 @@ public class TipServiceImpl implements TipsService {
   @Autowired
   private final TipsRepository tipsRepository;
   private final CurrentlyLoggedInUser currentlyLoggedInUser;
+  private final OrganizationRepository organizationRepository;
 
   @Override
   public List<Tips> getTips() {
@@ -53,6 +56,12 @@ public class TipServiceImpl implements TipsService {
     tipsRepository.save(deleteTips);
     return deleteTips;
 
+  }
+
+  @Override
+  public List<Tips> getTipsForApp(Long organizationId) {
+    Organization organization=organizationRepository.findByOrganizationId(organizationId);
+    return tipsRepository.findTipsByOrganizationAndIsActive(organization, true);
   }
 
 }

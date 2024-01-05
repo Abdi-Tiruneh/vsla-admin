@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
-import vsla_admin.Response.createResponse;
-import vsla_admin.loanReason.LoanReason;
-import vsla_admin.loanSetting.loanSetting;
 import vsla_admin.userManager.user.Users;
 import vsla_admin.utils.CurrentlyLoggedInUser;
 
@@ -30,11 +27,15 @@ public class TipsController {
     @Autowired
     private final TipsService tipsService;
     private final CurrentlyLoggedInUser currentlyLoggedInUser;
-    private final TipsRepository tipsRepositories;
 
     @GetMapping("/getTips")
     List<Tips> getTips() {
         return this.tipsService.getTips();
+
+    }
+     @GetMapping("/getTips/App/{organizationId}")
+    List<Tips> getTipsForApp(@PathVariable Long organizationId) {
+        return this.tipsService.getTipsForApp(organizationId);
 
     }
 

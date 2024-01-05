@@ -3,8 +3,6 @@ package vsla_admin.TermsandConditions;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
-import vsla_admin.Response.createResponse;
-import vsla_admin.loanSetting.loanSetting;
 import vsla_admin.userManager.user.Users;
 import vsla_admin.utils.CurrentlyLoggedInUser;
 
@@ -46,6 +42,11 @@ public class TermsandConditionsController {
     @GetMapping("/getTermsandConditions")
     List<TermsandConditions> getTermsandConditions() {
         return this.termsandConditionsService.getTermsandConditions();
+    }
+
+    @GetMapping("/getTermsandConditions/App/{organizationId}")
+    List<TermsandConditions> getTermsAndConditionsForApp(@PathVariable Long organizationId) {
+        return this.termsandConditionsService.getTermsAndConditionsForApp(organizationId);
     }
 
     @GetMapping("/{termsandConditionsId}")
